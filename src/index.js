@@ -7,6 +7,7 @@ const profileSection = document.querySelector('.profile-section');
 //     response.json()
 //   );
 // }
+
 function fetchUser(userName) {
   return fetch(`https://api.github.com/users/${userName}`).then(response => {
     if (!response.ok) {
@@ -21,7 +22,14 @@ searchBox.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  const userName = event.srcElement.login.value;
+  const userName = event.srcElement.login.value.trim();
+
+  if (!userName) {
+    userName.innerHTML = '';
+    userName.innerHTML = '';
+    Notify.failure('Oops, there is no country with that name');
+    return;
+  }
   fetchUser(userName).then(showProfile).catch(onError);
   event.target.reset();
 }
