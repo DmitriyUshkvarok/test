@@ -25,7 +25,6 @@ function onFormSubmit(event) {
   const userName = event.srcElement.login.value.trim();
 
   if (!userName) {
-    userName.innerHTML = '';
     Notify.failure('Oops, there is no country with that name');
     return;
   }
